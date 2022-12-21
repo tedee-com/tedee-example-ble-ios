@@ -6,9 +6,18 @@
 //
 
 import SwiftUI
+import CoreBluetooth
 
 @main
 struct tedee_exampleApp: App {
+    private let centralManager: CBCentralManager
+    private let centralManagerDelegate: CentralManagerDelegate
+    
+    init() {
+        centralManagerDelegate = CentralManagerDelegate()
+        centralManager = CBCentralManager(delegate: centralManagerDelegate, queue: .main)
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()

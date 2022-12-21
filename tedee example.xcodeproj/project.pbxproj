@@ -11,6 +11,17 @@
 		D384520C2951BA5800C198D3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D384520B2951BA5800C198D3 /* ContentView.swift */; };
 		D384520E2951BA5900C198D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D384520D2951BA5900C198D3 /* Assets.xcassets */; };
 		D38452112951BA5900C198D3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D38452102951BA5900C198D3 /* Preview Assets.xcassets */; };
+		D38452192951BC2200C198D3 /* CentralManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38452182951BC2200C198D3 /* CentralManagerDelegate.swift */; };
+		D384521B2951BF2D00C198D3 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D384521A2951BF2D00C198D3 /* Configuration.swift */; };
+		D384521D2951D65800C198D3 /* PeripheralDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D384521C2951D65800C198D3 /* PeripheralDelegate.swift */; };
+		D3845220295200CB00C198D3 /* SecuritySession.swift in Sources */ = {isa = PBXBuildFile; fileRef = D384521F295200CB00C198D3 /* SecuritySession.swift */; };
+		D38452222952024300C198D3 /* SecurityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38452212952024300C198D3 /* SecurityProtocol.swift */; };
+		D38452252952076E00C198D3 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D38452242952076E00C198D3 /* CryptoSwift */; };
+		D38452272952094400C198D3 /* MessageCipher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38452262952094400C198D3 /* MessageCipher.swift */; };
+		D384522929520A0D00C198D3 /* SecurityErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D384522829520A0D00C198D3 /* SecurityErrors.swift */; };
+		D384522B295354A900C198D3 /* CBPeripheral+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D384522A295354A900C198D3 /* CBPeripheral+Extension.swift */; };
+		D384522D2953558D00C198D3 /* CBService+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D384522C2953558D00C198D3 /* CBService+Extension.swift */; };
+		D384522F2953C04B00C198D3 /* CryptoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D384522E2953C04B00C198D3 /* CryptoManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +30,16 @@
 		D384520B2951BA5800C198D3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D384520D2951BA5900C198D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D38452102951BA5900C198D3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D38452182951BC2200C198D3 /* CentralManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralManagerDelegate.swift; sourceTree = "<group>"; };
+		D384521A2951BF2D00C198D3 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		D384521C2951D65800C198D3 /* PeripheralDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralDelegate.swift; sourceTree = "<group>"; };
+		D384521F295200CB00C198D3 /* SecuritySession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecuritySession.swift; sourceTree = "<group>"; };
+		D38452212952024300C198D3 /* SecurityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityProtocol.swift; sourceTree = "<group>"; };
+		D38452262952094400C198D3 /* MessageCipher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCipher.swift; sourceTree = "<group>"; };
+		D384522829520A0D00C198D3 /* SecurityErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityErrors.swift; sourceTree = "<group>"; };
+		D384522A295354A900C198D3 /* CBPeripheral+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CBPeripheral+Extension.swift"; sourceTree = "<group>"; };
+		D384522C2953558D00C198D3 /* CBService+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CBService+Extension.swift"; sourceTree = "<group>"; };
+		D384522E2953C04B00C198D3 /* CryptoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D38452252952076E00C198D3 /* CryptoSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,10 +73,13 @@
 		D38452082951BA5800C198D3 /* tedee example */ = {
 			isa = PBXGroup;
 			children = (
+				D384521E295200AD00C198D3 /* Security */,
+				D38452172951BB8B00C198D3 /* Bluetooth */,
 				D38452092951BA5800C198D3 /* tedee_exampleApp.swift */,
 				D384520B2951BA5800C198D3 /* ContentView.swift */,
 				D384520D2951BA5900C198D3 /* Assets.xcassets */,
 				D384520F2951BA5900C198D3 /* Preview Content */,
+				D384521A2951BF2D00C198D3 /* Configuration.swift */,
 			);
 			path = "tedee example";
 			sourceTree = "<group>";
@@ -65,6 +90,29 @@
 				D38452102951BA5900C198D3 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D38452172951BB8B00C198D3 /* Bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				D38452182951BC2200C198D3 /* CentralManagerDelegate.swift */,
+				D384521C2951D65800C198D3 /* PeripheralDelegate.swift */,
+			);
+			path = Bluetooth;
+			sourceTree = "<group>";
+		};
+		D384521E295200AD00C198D3 /* Security */ = {
+			isa = PBXGroup;
+			children = (
+				D384521F295200CB00C198D3 /* SecuritySession.swift */,
+				D38452212952024300C198D3 /* SecurityProtocol.swift */,
+				D38452262952094400C198D3 /* MessageCipher.swift */,
+				D384522829520A0D00C198D3 /* SecurityErrors.swift */,
+				D384522A295354A900C198D3 /* CBPeripheral+Extension.swift */,
+				D384522C2953558D00C198D3 /* CBService+Extension.swift */,
+				D384522E2953C04B00C198D3 /* CryptoManager.swift */,
+			);
+			path = Security;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +131,9 @@
 			dependencies = (
 			);
 			name = "tedee example";
+			packageProductDependencies = (
+				D38452242952076E00C198D3 /* CryptoSwift */,
+			);
 			productName = "tedee example";
 			productReference = D38452062951BA5800C198D3 /* tedee example.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +162,9 @@
 				Base,
 			);
 			mainGroup = D38451FD2951BA5800C198D3;
+			packageReferences = (
+				D38452232952076D00C198D3 /* XCRemoteSwiftPackageReference "CryptoSwift" */,
+			);
 			productRefGroup = D38452072951BA5800C198D3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -137,8 +191,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D38452222952024300C198D3 /* SecurityProtocol.swift in Sources */,
+				D38452192951BC2200C198D3 /* CentralManagerDelegate.swift in Sources */,
 				D384520C2951BA5800C198D3 /* ContentView.swift in Sources */,
+				D3845220295200CB00C198D3 /* SecuritySession.swift in Sources */,
+				D384521B2951BF2D00C198D3 /* Configuration.swift in Sources */,
+				D384522929520A0D00C198D3 /* SecurityErrors.swift in Sources */,
+				D384522F2953C04B00C198D3 /* CryptoManager.swift in Sources */,
+				D384522B295354A900C198D3 /* CBPeripheral+Extension.swift in Sources */,
 				D384520A2951BA5800C198D3 /* tedee_exampleApp.swift in Sources */,
+				D38452272952094400C198D3 /* MessageCipher.swift in Sources */,
+				D384522D2953558D00C198D3 /* CBService+Extension.swift in Sources */,
+				D384521D2951D65800C198D3 /* PeripheralDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,8 +331,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"tedee example/Preview Content\"";
+				DEVELOPMENT_TEAM = T6977C7Z5Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Bluetooth is required to make connection to tedee Lock";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -279,7 +345,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "tedee.tedee-example";
+				PRODUCT_BUNDLE_IDENTIFIER = tedee.example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -295,8 +361,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"tedee example/Preview Content\"";
+				DEVELOPMENT_TEAM = T6977C7Z5Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Bluetooth is required to make connection to tedee Lock";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -307,7 +375,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "tedee.tedee-example";
+				PRODUCT_BUNDLE_IDENTIFIER = tedee.example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -337,6 +405,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D38452232952076D00C198D3 /* XCRemoteSwiftPackageReference "CryptoSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/krzyzanowskim/CryptoSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D38452242952076E00C198D3 /* CryptoSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D38452232952076D00C198D3 /* XCRemoteSwiftPackageReference "CryptoSwift" */;
+			productName = CryptoSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D38451FE2951BA5800C198D3 /* Project object */;
 }
