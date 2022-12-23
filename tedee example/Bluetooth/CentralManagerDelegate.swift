@@ -19,6 +19,7 @@ final class CentralManagerDelegate: NSObject, CBCentralManagerDelegate {
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
+        connectedPeripheralDelegate.centralManager = central
         peripheral.delegate = connectedPeripheralDelegate
         connectedPeripheral = peripheral
         central.connect(peripheral)

@@ -8,14 +8,10 @@
 import Foundation
 import CoreBluetooth
 
-public final class SecuritySession {
+final class SecuritySession {
     let peripheral: CBPeripheral
     let centralManager: CBCentralManager
     
-//    private let cryptoManager: CryptoManager
-//    private let devicesAdapter: DevicesAdapter
-//    private let certificatesManager: CertificatesManager
-//    private let bleNotificationHandler: BleNotificationHandler
     private var bleNotificationHandlerRegistered = false
     private var client: SecurityProtocol
     private var completion: (Result<Void, Error>) -> Void
@@ -27,7 +23,7 @@ public final class SecuritySession {
     private let ecdhKeyPair: SecKey
     private let devicePublicKey: SecKey
     
-    public init(peripheral: CBPeripheral,
+    init(peripheral: CBPeripheral,
                 centralManager: CBCentralManager,
                 completion: @escaping (Result<Void, Error>) -> Void) throws {
         self.peripheral = peripheral
@@ -63,17 +59,17 @@ public final class SecuritySession {
         sendHelloMessage()
     }
     
-    private func disconnect() {
+    func disconnect() {
         centralManager.cancelPeripheralConnection(peripheral)
     }
     
-    private func sendHelloMessage() {
+    func sendHelloMessage() {
         guard let parameters = try? client.hello(pfs: true) else {
             disconnect()
             return
         }
         
-        var request: [UInt8] = [0]
+        var request: [UInt8] = [3]
         request.append(contentsOf: parameters)
         guard let characteristic = peripheral.service?.secureSessionCharacteristic else {
             disconnect()
@@ -85,7 +81,7 @@ public final class SecuritySession {
 
 // MARK: Encrypt & Decrypt
 
-public extension SecuritySession {
+extension SecuritySession {
     func encrypt(message: [UInt8]) throws -> [UInt8] {
         do {
             return try client.write(data: message)
@@ -107,8 +103,9 @@ public extension SecuritySession {
 }
 
 extension SecuritySession {
-    private func handleResponse(response: [UInt8], removeCertificates: Bool = false) {
-        switch response.first {
+    func handleResponse(response: [UInt8], removeCertificates: Bool = false) {
+        guard let header = response.first else { return }
+        switch (header & 0xF) {
             case 3:
                 handleHelloResponse(response)
             case 5:
@@ -122,7 +119,7 @@ extension SecuritySession {
         }
     }
     
-    private func handleHelloResponse(_ response: [UInt8]) {
+    func handleHelloResponse(_ response: [UInt8]) {
         let params = Array(response.dropFirst())
         guard let mtu = self.extractMtu(from: Data(params)),
               mtu >= 1 else {
@@ -141,7 +138,7 @@ extension SecuritySession {
         sendServerVerify()
     }
     
-    private func sendServerVerify() {
+    func sendServerVerify() {
         var request: [UInt8] = [5]
         request.append(contentsOf: client.serverVerifyInit())
         guard let characteristic = peripheral.service?.secureSessionCharacteristic else {
@@ -151,7 +148,7 @@ extension SecuritySession {
         peripheral.writeValue(Data(request), for: characteristic, type: .withResponse)
     }
     
-    private func handleServerVerifyResponse(_ response: [UInt8]) {
+    func handleServerVerifyResponse(_ response: [UInt8]) {
         let params = Array(response.dropFirst())
         
         do {
@@ -169,7 +166,7 @@ extension SecuritySession {
         }
     }
     
-    private func sendClientVerify() {
+    func sendClientVerify() {
         guard mtuSize != 0 else { return }
         var verifyMessage: [UInt8] = []
         
@@ -205,11 +202,11 @@ extension SecuritySession {
         }
     }
     
-    private func handleInitializedResponse() {
+    func handleInitializedResponse() {
         completion(.success(()))
     }
     
-    private func handleAlertResponse() {
+    func handleAlertResponse() {
         completion(.failure(SecurityErrors.parseError))
         disconnect()
     }

@@ -88,4 +88,13 @@ extension SecKey {
         
         return attributes as CFDictionary
     }
+    
+    func base64String() -> String {
+        var error: Unmanaged<CFError>?
+        guard let cfData = SecKeyCopyExternalRepresentation(self, &error) else {
+            fatalError("Cannot convert SecKey to base64 string")
+        }
+        
+        return (cfData as Data).base64EncodedString()
+    }
 }
