@@ -8,9 +8,10 @@
 import Foundation
 import CoreBluetooth
 
-final class CentralManagerDelegate: NSObject, CBCentralManagerDelegate {
+final class CentralManagerDelegate: NSObject, CBCentralManagerDelegate, ObservableObject {
     var connectedPeripheral: CBPeripheral?
     var connectedPeripheralDelegate = PeriperalDelegate()
+    @Published var peripheralState = "Scanning for device"
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state == .poweredOn {
@@ -22,10 +23,12 @@ final class CentralManagerDelegate: NSObject, CBCentralManagerDelegate {
         connectedPeripheralDelegate.centralManager = central
         peripheral.delegate = connectedPeripheralDelegate
         connectedPeripheral = peripheral
+        peripheralState = "Device discovered"
         central.connect(peripheral)
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+        peripheralState = "Device cnnected"
         peripheral.discoverServices(nil)
     }
 }

@@ -10,12 +10,7 @@ import CoreBluetooth
 
 @main
 struct tedee_exampleApp: App {
-    let centralManager: CBCentralManager
-    let centralManagerDelegate: CentralManagerDelegate
-    
     init() {
-        centralManagerDelegate = CentralManagerDelegate()
-        centralManager = CBCentralManager(delegate: centralManagerDelegate, queue: .main)
         let cryptoManager = CryptoManager()
         if let key = cryptoManager.getMobilePublicKey()?.base64String(),
            !key.isEmpty {

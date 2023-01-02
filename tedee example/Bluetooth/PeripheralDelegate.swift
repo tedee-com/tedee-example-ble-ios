@@ -14,6 +14,7 @@ final class PeriperalDelegate: NSObject, CBPeripheralDelegate {
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         guard let services = peripheral.services else { return }
+        
         for service in services {
             peripheral.discoverCharacteristics(nil, for: service)
         }
@@ -47,10 +48,12 @@ final class PeriperalDelegate: NSObject, CBPeripheralDelegate {
             guard session == nil,
                   let centralManager = centralManager else { return }
             do {
+                (centralManager.delegate as? CentralManagerDelegate)?.peripheralState = "Establishing secure connection"
                 session = try SecuritySession(peripheral: peripheral, centralManager: centralManager, completion: { result in
                     switch result {
                         case .success:
                             print("Secure session established")
+                            (centralManager.delegate as? CentralManagerDelegate)?.peripheralState = "Device ready"
                         case.failure(let error):
                             print(error)
                     }

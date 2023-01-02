@@ -9,10 +9,10 @@ import Foundation
 import CoreBluetooth
 
 enum Configuration {
-    static let SerialNumber = "19500203-000011"
-    static let CertificateString = "Your certificate"
-    static let DevicePublicKeyString = "Your device public key"
-    static let MobilePublicKeyString = "Your mobile public key"
+    static let SerialNumber = ""
+    static let CertificateString = ""
+    static let DevicePublicKeyString = ""
+    static let MobilePublicKeyString = ""
 }
 
 extension Configuration {
