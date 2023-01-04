@@ -116,7 +116,7 @@ App will also generate public key that is required to lock certificate (see next
 2. replace empty value of `SerialNumber` with your Tedee lock serial number
 3. replace empty value of `MobilePublicKeyString` with `Public key` you see in Xcode console
 4. replace empty value of `DevicePublicKeyString` with `devicePublicKey` value from last API request results
-5. replace empty value of `CertificateString with `certificate` value from last API request results
+5. replace empty value of `CertificateString` with `certificate` value from last API request results
 
 ### Step 5 - operate the lock
 
@@ -125,4 +125,4 @@ App will also generate public key that is required to lock certificate (see next
 
 
 
-![](assets/images/img14.jpeg)
+![](assets/images/img14.jpg)
