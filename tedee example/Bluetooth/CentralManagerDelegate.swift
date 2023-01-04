@@ -28,7 +28,7 @@ final class CentralManagerDelegate: NSObject, CBCentralManagerDelegate, Observab
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        peripheralState = "Device cnnected"
+        peripheralState = "Device connected"
         peripheral.discoverServices(nil)
     }
 }
