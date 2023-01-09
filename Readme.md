@@ -86,14 +86,17 @@ Using this example you will be able to operate only one lock a time.
 
 On first launch app will ask you for permission to use Bluetooth.
 
-App will also generate public key that is required to lock certificate (see next steps). Look for `Public key to register in api:` in Xcode console. If it didn't opened tap on the ![](assets/images/img12.png)  in bottom bar to open Xcode console. You will see there also steps that are taken by the app to unlock the lock (connect, start encrypted session, send unlock command, receive response).
+App will also generate public key that is required to lock certificate (see next steps). Look for `Public key to register in api:` in Xcode console. If it didn't opened tap on the ![](assets/images/img12.png) in bottom bar to open Xcode console. You will see there also steps that are taken by the app to unlock the lock (connect, start encrypted session, send unlock command, receive response).
 
 ### Step 4 - register tedee example app
 1. log in to [Tedee Portal](https://portal.tedee.com) with credentials from created Tedee account
 2. click on your initials in top right corner
 ![](assets/images/img2.png)
 
-4. click on Personal Access Keys and generate new access key with at least **Device certificates - Read** permission
+4. click on Personal Access Keys and generate new access key with permissions:
+ 	- **Device certificates - Operate**
+	- **Mobile devices - Read**
+	- **Mobile devices - Write**
 5. Go to [Tedee API](https://api.tedee.com) and authorize yourself with created Personal Access Key
 	1. ![](assets/images/img9.png)
 	2. proper format is `PersonalKey [YOUR PERSONAL ACCESS KEY]`
