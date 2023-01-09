@@ -8,7 +8,7 @@ This example project was created by [Tedee](https://tedee.com) team to show you 
 
 This project was created using Swift language and run it on iOS device.
 
-Purpose of this project is to present how you can open bluetooth connection with Tedee Lock, start encrypted session and operate it (currently only the `Unlock` command is implemented). 
+Purpose of this project is to present how you can open bluetooth connection with Tedee Lock, start encrypted session and operate it (currently only the `Unlock` command is implemented).
 
 App uses native iOS Bluetooth stack and custom implementation of secure session. It is not using any Tedee services and works only locally within range of BLE. During preparation steps you will have to get lock certificate manually.
 
@@ -30,7 +30,7 @@ Using this example you will be able to operate only one lock a time.
 ### Other
 1. Tedee account created in Tedee app
 2. Lock is paired with (added to) Tedee account.
-3. Lock serial number from Tedee app
+3. Lock `Serial number` and `Device ID` from Tedee app
 	- go to: `Lock details > Settings (gear icon) > Information`
 
 > :warning: This project cannot be run on Xcode simulator, you will have to run it on physical device (iPhone).
@@ -43,7 +43,7 @@ Using this example you will be able to operate only one lock a time.
 3. in file navigator select `tedee example` and choose target `tedee example` from `TARGETS`
 4. change tab to `Signing & Capabilities`
 ![](assets/images/img3.png)
- 
+
 7. change `Team` to `Personal Team`
 8. change `Bundle Identifier` to something else, for example: `[YOUR COMPANY DOMAIN].tedee-example`
 
@@ -64,10 +64,10 @@ Using this example you will be able to operate only one lock a time.
 
 9. Tap `Trust` on iPhone to trust your Mac connection and confirm with your iPhone passcode  
 ![](assets/images/img7.png)
-   
+
 9. Click Done  
 ![](assets/images/img8.png)
-   
+
 10. You can select `Connect via Network` for connecting Xcode to iPhone via WiFi but we do not recommend this if you do not have experience with Xcode  
 
 ![](/assets/images/img1.png)
@@ -79,23 +79,24 @@ Using this example you will be able to operate only one lock a time.
 
 **Now you are ready to build the project and upload it to your iPhone.**
 
-1. `Cmd + R` will build project and run it on connected iPhone. 
+1. `Cmd + R` will build project and run it on connected iPhone.
 2. Unlock your iPhone during build to give Xcode right to upload and start app on it.
 
 #### First Launch
 
-On first launch app will ask you for permission to use Bluetooth. 
+On first launch app will ask you for permission to use Bluetooth.
 
-App will also generate public key that is required to lock certificate (see next steps). Look for [PLACEHOLDER LOGS WITH PUBLIC KEY] in Xcode console. If it didn't opened tap on the ![](assets/images/img12.png)  in bottom bar to open Xcode console. You will see there also steps that are taken by the app to unlock the lock (connect, start encrypted session, send unlock command, receive response).
-
-[SCREENSHOT OF XCODE CONSOLE WITH LOGS]
+App will also generate public key that is required to lock certificate (see next steps). Look for `Public key to register in api:` in Xcode console. If it didn't opened tap on the ![](assets/images/img12.png) in bottom bar to open Xcode console. You will see there also steps that are taken by the app to unlock the lock (connect, start encrypted session, send unlock command, receive response).
 
 ### Step 4 - register tedee example app
-1. log in to [Tedee Portal](https://portal.tedee.com) with credentials from created Tedee account 
-2. click on your initials in top right corner 
+1. log in to [Tedee Portal](https://portal.tedee.com) with credentials from created Tedee account
+2. click on your initials in top right corner
 ![](assets/images/img2.png)
 
-4. click on Personal Access Keys and generate new access key with at least **Device certificates - Read** permission [TO BE VERIFIED IF SUFFICIENT]
+4. click on Personal Access Keys and generate new access key with permissions:
+ 	- **Device certificates - Operate**
+	- **Mobile devices - Read**
+	- **Mobile devices - Write**
 5. Go to [Tedee API](https://api.tedee.com) and authorize yourself with created Personal Access Key
 	1. ![](assets/images/img9.png)
 	2. proper format is `PersonalKey [YOUR PERSONAL ACCESS KEY]`
@@ -107,16 +108,18 @@ App will also generate public key that is required to lock certificate (see next
 	7. go to `DeviceCertificate` section and use `/api/[api version]/my/devicecertificate/getformobile`
 	![](assets/images/img10.png)
 	5. click on `Try it out`
-	6. fill `MobileID` gathered from previous request response
+	6. fill `MobileID` gathered from previous request response and `Device ID` from Tedee app
 	7. store somewhere response result, you will need it in next step
 
 > :warning: Generated certificate has expiration date, which is attached to the response with certificate. After certificate expiration you will not be able to operate the lock and you need to get new one.
 
-### Step 4 - add device certificate and serial number to project
+### Step 4 - fill required configuration
 
-1. open [SOME CONFIGURATION FILE] in project navigator
-2. replace empty value of [SOME SERIAL NUMBER PROPERTY] with your Tedee lock serial number
-4. replace empty value of [SOME DEVICE CERTIFICATE RESPONSE PROPERTY] with results of API request
+1. open `Configuration.swift` in project navigator
+2. replace empty value of `SerialNumber` with your Tedee lock serial number
+3. replace empty value of `MobilePublicKeyString` with `Public key` you see in Xcode console
+4. replace empty value of `DevicePublicKeyString` with `devicePublicKey` value from last API request results
+5. replace empty value of `CertificateString` with `certificate` value from last API request results
 
 ### Step 5 - operate the lock
 
@@ -124,6 +127,5 @@ App will also generate public key that is required to lock certificate (see next
 2. if everything is configured properly you should be able to unlock the lock.
 
 
-App interface contains basic interface with unlock button 
 
-[SCREEN SHOT OF APP UI]
+![](assets/images/img14.jpg)

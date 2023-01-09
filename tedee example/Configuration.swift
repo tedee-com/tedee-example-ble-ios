@@ -17,11 +17,21 @@ enum Configuration {
 
 extension Configuration {
     static var deviceService: CBUUID = {
+        guard !SerialNumber.isEmpty else {
+            print("ERROR: Serial number is missing! Update `SerialNumber` with valid lock serial number!");
+            exit(1)
+        }
+        
         let serialNumber = SerialNumber.replacingOccurrences(of: "-", with: "")
         return CBUUID(string: serialNumber.serviceString())
     }()
     
     static var DevicePublicKey: SecKey = {
+        guard !DevicePublicKeyString.isEmpty else {
+            print("ERROR: Mobile public key is missing! Update `DevicePublicKeyString` with one from Tedee API!")
+            exit(1)
+        }
+        
         var error: Unmanaged<CFError>?
         guard let publicKeyData = Data(base64Encoded: Self.DevicePublicKeyString),
               let publicKey = SecKeyCreateWithData(publicKeyData as CFData, SecKey.devicePublicKeyAttributes as CFDictionary, &error) else {
@@ -32,6 +42,11 @@ extension Configuration {
     }()
     
     static var MobilePublicKey: SecKey = {
+        guard !MobilePublicKeyString.isEmpty else {
+            print("ERROR: Device public key is missing! Update `MobilePublicKeyString` with one from console!")
+            exit(1)
+        }
+        
         var error: Unmanaged<CFError>?
         guard let publicKeyData = Data(base64Encoded: Self.MobilePublicKeyString),
               let publicKey = SecKeyCreateWithData(publicKeyData as CFData, SecKey.devicePublicKeyAttributes as CFDictionary, &error) else {

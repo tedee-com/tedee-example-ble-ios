@@ -39,6 +39,11 @@ final class SecuritySession {
         self.privateKey = privateKey
         self.ecdhKeyPair = ecdhKeyPair
 
+        guard !Configuration.CertificateString.isEmpty else {
+            print("ERROR: Certificate is missing! Update `CertificateString` with one from Tedee API!")
+            exit(1)
+        }
+        
         guard let certificateData = Data(base64Encoded: Configuration.CertificateString) else {
             throw SecurityErrors.missingCertificate
         }
